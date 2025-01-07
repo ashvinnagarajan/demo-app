@@ -1,0 +1,28 @@
+# Python files to ignore
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Flask-specific files
+instance/
+.env
+*.db
+
+# Node.js (React) files to ignore
+node_modules/
+npm-debug.log
+yarn-error.log
+dist/
+build/
+
+# VSCode and JetBrains settings (optional)
+.vscode/
+.idea/
+
+# AWS Zappa and other cloud artifacts
+*.log
+.zappa/
+.aws-sam/
