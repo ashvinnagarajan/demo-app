@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Heading, VStack, Input, Button, HStack, List, ListItem, IconButton, Text, Container } from '@chakra-ui/react';
-import { Toaster, toaster } from "./components/ui/toaster"
 import axios from 'axios';
 
 const apiUrl = 'https://zz2vxt1eck.execute-api.us-east-2.amazonaws.com/dev/users';
@@ -17,26 +16,14 @@ function Users() {
             const response = await axios.get(apiUrl);
             setUsers(response.data);
         } catch (error) {
-            toaster.create({
-                title: 'Error fetching users',
-                description: error.message,
-                status: 'error',
-                duration: 5000,
-                isClosable: true,
-            });
+            console.error('Error fetching users:', error);
         }
     };
 
     // Add a new user
     const addUser = async () => {
         if (!userId || !userName || !userEmail) {
-            toaster.create({
-                title: 'Missing Fields',
-                description: 'Please fill out all fields',
-                status: 'warning',
-                duration: 3000,
-                isClosable: true,
-            });
+            alert('Please fill all fields');
             return;
         }
         try {
@@ -45,25 +32,12 @@ function Users() {
                 name: userName,
                 email: userEmail
             });
-            toaster.create({
-                title: 'User Added',
-                description: 'User added successfully!',
-                status: 'success',
-                duration: 3000,
-                isClosable: true,
-            });
             getUsers();
             setUserId('');
             setUserName('');
             setUserEmail('');
         } catch (error) {
-            toaster.create({
-                title: 'Error Adding User',
-                description: error.message,
-                status: 'error',
-                duration: 5000,
-                isClosable: true,
-            });
+            console.error('Error adding user:', error);
         }
     };
 
@@ -71,22 +45,9 @@ function Users() {
     const deleteUser = async (id) => {
         try {
             await axios.delete(`${apiUrl}/${id}`);
-            toaster.create({
-                title: 'User Deleted',
-                description: 'User deleted successfully!',
-                status: 'success',
-                duration: 3000,
-                isClosable: true,
-            });
             getUsers();
         } catch (error) {
-            toaster.create({
-                title: 'Error Deleting User',
-                description: error.message,
-                status: 'error',
-                duration: 5000,
-                isClosable: true,
-            });
+            console.error('Error deleting user:', error);
         }
     };
 
@@ -96,8 +57,6 @@ function Users() {
 
     return (
         <Container maxW="container.md" py={10}>
-            <Toaster/>
-
             <Heading textAlign="center" mb={8}>User Management</Heading>
 
             {/* Form Section */}
@@ -125,23 +84,19 @@ function Users() {
             </VStack>
 
             {/* Users List Section */}
-            <Heading size="md" mb={4}>Users List</Heading>
-            <List spacing={4}>
+            <Heading size="md">Users List</Heading>
+            <List.Root>
                 {users.map((user) => (
-                    <ListItem key={user.id} border="1px" borderColor="gray.200" borderRadius="md" p={4}>
+                    <List.Item key={user.id} border="1px" borderColor="gray.200" borderRadius="md" p={4}>
                         <HStack justify="space-between">
                             <Box>
                                 <Text fontWeight="bold">{user.name}</Text>
                                 <Text fontSize="sm" color="gray.600">{user.email}</Text>
                             </Box>
-                            <IconButton aria-label="Search database"
-                                colorScheme="red"
-                                onClick={() => deleteUser(user.id)}
-                            />
                         </HStack>
-                    </ListItem>
+                    </List.Item>
                 ))}
-            </List>
+            </List.Root>
         </Container>
     );
 }
