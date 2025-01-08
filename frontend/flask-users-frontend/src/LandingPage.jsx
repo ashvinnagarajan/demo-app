@@ -5,8 +5,8 @@ function LandingPage() {
     return (
         <Box>
             {/* Navbar */}
-            <Flex as="nav" justify="space-between" p={5} bg="blue.500" color="white">
-                <Heading size="lg">Flask User Management App</Heading>
+            <Flex as="nav" justify="space-between" p={5}>
+                <Heading size="lg">Demo App</Heading>
                 <Link href="/users" fontWeight="bold" _hover={{ textDecoration: 'underline' }}>
                     Manage Users
                 </Link>
@@ -17,18 +17,18 @@ function LandingPage() {
                 <Heading as="h1" size="2xl" mb={4}>
                     Effortlessly Manage Your Users
                 </Heading>
-                <Text fontSize="lg" mb={6} color="gray.600">
+                <Text fontSize="lg" mb={6}>
                     A powerful and simple user management app built with React and Flask.
                 </Text>
                 <Link href="/users">
-                    <Button colorScheme="blue" size="lg">
+                    <Button size="lg">
                         Get Started
                     </Button>
                 </Link>
             </Container>
 
             {/* Features Section */}
-            <Box py={20} bg="gray.100">
+            <Box py={20} >
                 <Container maxW="container.lg">
                     <Heading as="h2" size="xl" textAlign="center" mb={10}>
                         Why Choose Our App?
@@ -40,7 +40,6 @@ function LandingPage() {
                             borderWidth="1px"
                             borderRadius="md"
                             boxShadow="md"
-                            bg="white"
                             maxW="sm"
                         >
                             <Heading size="md">Easy to Use</Heading>
@@ -55,7 +54,6 @@ function LandingPage() {
                             borderWidth="1px"
                             borderRadius="md"
                             boxShadow="md"
-                            bg="white"
                             maxW="sm"
                         >
                             <Heading size="md">Secure</Heading>
@@ -70,7 +68,6 @@ function LandingPage() {
                             borderWidth="1px"
                             borderRadius="md"
                             boxShadow="md"
-                            bg="white"
                             maxW="sm"
                         >
                             <Heading size="md">Scalable</Heading>
@@ -83,7 +80,7 @@ function LandingPage() {
             </Box>
 
             {/* Footer Section */}
-            <Box bg="blue.500" color="white" py={5} textAlign="center">
+            <Box py={5} textAlign="center">
                 &copy; 2024 Flask User Management App. All rights reserved.
             </Box>
         </Box>

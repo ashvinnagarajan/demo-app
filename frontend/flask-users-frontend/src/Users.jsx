@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Heading, VStack, Input, Button, HStack, List, ListItem, IconButton, Text, Container } from '@chakra-ui/react';
+import { Heading, VStack, Input, HStack, Flex, Container } from '@chakra-ui/react';
 import axios from 'axios';
+import { Button } from "./components/ui/button"
+import {
+    RadioCardItem,
+    RadioCardLabel,
+    RadioCardRoot,
+  } from "./components/ui/radio-card"
 
 const apiUrl = 'https://zz2vxt1eck.execute-api.us-east-2.amazonaws.com/dev/users';
 
 function Users() {
     const [users, setUsers] = useState([]);
-    const [userId, setUserId] = useState('');
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     // Fetch all users
     const getUsers = async () => {
@@ -22,18 +28,16 @@ function Users() {
 
     // Add a new user
     const addUser = async () => {
-        if (!userId || !userName || !userEmail) {
+        if (!userName || !userEmail) {
             alert('Please fill all fields');
             return;
         }
         try {
             await axios.post(apiUrl, {
-                id: parseInt(userId),
                 name: userName,
                 email: userEmail
             });
             getUsers();
-            setUserId('');
             setUserName('');
             setUserEmail('');
         } catch (error) {
@@ -62,19 +66,12 @@ function Users() {
             {/* Form Section */}
             <VStack spacing={4} mb={8} align="stretch">
                 <Input 
-                    placeholder="User ID"
-                    type="number"
-                    value={userId}
-                    onChange={(e) => setUserId(e.target.value)}
-                />
-                <Input 
                     placeholder="User Name"
                     value={userName}
                     onChange={(e) => setUserName(e.target.value)}
                 />
                 <Input 
-                    placeholder="User Email"
-                    type="email"
+                    placeholder="Say something interesting"
                     value={userEmail}
                     onChange={(e) => setUserEmail(e.target.value)}
                 />
@@ -84,19 +81,42 @@ function Users() {
             </VStack>
 
             {/* Users List Section */}
-            <Heading size="md">Users List</Heading>
-            <List.Root>
-                {users.map((user) => (
-                    <List.Item key={user.id} border="1px" borderColor="gray.200" borderRadius="md" p={4}>
-                        <HStack justify="space-between">
-                            <Box>
-                                <Text fontWeight="bold">{user.name}</Text>
-                                <Text fontSize="sm" color="gray.600">{user.email}</Text>
-                            </Box>
-                        </HStack>
-                    </List.Item>
-                ))}
-            </List.Root>
+            <RadioCardRoot defaultValue="next">
+                <Flex justify="space-between">
+                    <RadioCardLabel textStyle="sm" fontWeight="medium">
+                        Users List
+                    </RadioCardLabel>
+                    <Button
+                        size="md"
+                        mt="4"
+                        colorPalette='red'
+                        loading={isLoading}
+                        onClick={async () =>  {
+                            setIsLoading(true);
+                            const selectedUser = document.querySelector('input[type="radio"]:checked');
+                            if (selectedUser) {
+                                await deleteUser(selectedUser.value);
+                            } else {
+                                alert('Please select a user to delete');
+                            }
+                            setIsLoading(false);
+                        }}>
+                        Delete User
+                    </Button>
+                </Flex>
+                <HStack align="stretch">
+                <Flex gap="2" justify="space-between" wrap="wrap">
+                    {users.map((user) => (
+                    <RadioCardItem
+                        label={user.name}
+                        description={user.email}
+                        key={user.id}
+                        value={user.id}
+                    />
+                    ))}
+                </Flex>
+                </HStack>
+            </RadioCardRoot>
         </Container>
     );
 }
