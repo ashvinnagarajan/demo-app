@@ -13,7 +13,6 @@ function LandingPage() {
                 </Link>
             </Flex>
 
-            {/* Hero Section */}
             <Container maxW="container.lg" centerContent py={20} textAlign="center">
                 <Heading as="h1" size="2xl" mb={4}>
                     Effortlessly Manage Your Users
