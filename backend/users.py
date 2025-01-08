@@ -8,6 +8,7 @@ users_bp = Blueprint('users_bp', __name__)
 # Initialize DynamoDB
 dynamodb = boto3.resource('dynamodb', region_name='us-east-2')
 table = dynamodb.Table('users')
+counter_table = dynamodb.Table('CounterTable')
 
 # GET all users
 @users_bp.route('/users', methods=['GET'])
@@ -27,8 +28,11 @@ def get_user(user_id):
 @users_bp.route('/users', methods=['POST'])
 def add_user():
     data = request.json
+    if "name" not in data or "email" not in data:
+        return jsonify({"error": "Name and email are required"}), 400
+    new_user_id = get_next_user_id()
     new_user = {
-        "id": int(data.get("id")),
+        "id": new_user_id,
         "name": data.get("name"),
         "email": data.get("email")
     }
@@ -55,3 +59,13 @@ def update_user(user_id):
 def delete_user(user_id):
     table.delete_item(Key={'id': int(user_id)})
     return jsonify({"message": "User deleted"}), 200
+
+# Helper function to generate a new incrementing ID
+def get_next_user_id() -> int:
+    response = counter_table.update_item(
+        Key={'counter_name': 'user_id'},
+        UpdateExpression='ADD current_value :inc',
+        ExpressionAttributeValues={':inc': 1},
+        ReturnValues='UPDATED_NEW'
+    )
+    return int(response['Attributes']['current_value'])
