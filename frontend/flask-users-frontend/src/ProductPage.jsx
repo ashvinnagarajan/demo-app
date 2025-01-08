@@ -14,6 +14,7 @@ import { HeroSection } from "./product/HeroSection";
 // import { Layout } from "./components/Layout";
 // import { PricingSection } from "./components/PricingSection";
 import { Helmet } from "react-helmet";
+import PageActionBar from "./components/PageActionBar";
 
 const faqs = [
     {
@@ -195,6 +196,7 @@ function ProductPage() {
           </Box>
         </Container>
       </Box>
+      <PageActionBar pageTitle="Product"/>
     </Container>
   );
 };

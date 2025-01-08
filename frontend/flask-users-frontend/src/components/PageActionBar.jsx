@@ -9,7 +9,7 @@ import {
 const pages = [
   { title: 'Home', path: '/' },
   { title: 'Users', path: '/users' },
-  { title: 'TBD', path: '/tbd' }
+  { title: 'Product', path: '/product' }
 ];
 
 const PageActionBar = ({ pageTitle }) => {
