@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Button, Flex } from '@chakra-ui/react';
+import { Link, Button, HStack } from '@chakra-ui/react';
 import {
   ActionBarCloseTrigger,
   ActionBarContent,
@@ -19,18 +19,19 @@ const PageActionBar = ({ pageTitle }) => {
     <ActionBarRoot
       open={checked}
       onOpenChange={(e) => setChecked(e.open)}
+      closeOnInteractOutside={false}
       >
       <ActionBarContent>
         <ActionBarCloseTrigger />
-        <Flex justify="space-between">
+        <HStack gap="2">
           {pages.map((page, index) => (
             <Link key={index} href={page.path}>
-              <Button variant={pageTitle === page.title ? 'solid' : 'ghost'} size="sm">
+              <Button variant={pageTitle === page.title ? 'solid' : 'surface'} size="sm">
                 {page.title}
               </Button>
             </Link>
           ))}
-        </Flex>
+        </HStack>
       </ActionBarContent>
     </ActionBarRoot>
   );
