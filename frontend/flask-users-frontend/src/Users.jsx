@@ -7,6 +7,7 @@ import {
     RadioCardLabel,
     RadioCardRoot,
   } from "./components/ui/radio-card"
+  import { Toaster, toaster } from "./components/ui/toaster"
 
 const apiUrl = 'https://zz2vxt1eck.execute-api.us-east-2.amazonaws.com/dev/users';
 
@@ -22,14 +23,22 @@ function Users() {
             const response = await axios.get(apiUrl);
             setUsers(response.data);
         } catch (error) {
-            console.error('Error fetching users:', error);
+            const errorMsg = `Error fetching users: ${error}`;
+            console.error(errorMsg);
+            toaster.create({
+                description: errorMsg,
+                type: "error",
+            })
         }
     };
 
     // Add a new user
     const addUser = async () => {
         if (!userName || !userEmail) {
-            alert('Please fill all fields');
+            toaster.create({
+                description: 'Please fill all fields',
+                type: "error",
+            })
             return;
         }
         try {
@@ -40,8 +49,17 @@ function Users() {
             getUsers();
             setUserName('');
             setUserEmail('');
+            toaster.create({
+                description: `Added user ${userName}`,
+                type: "success",
+            })
         } catch (error) {
-            console.error('Error adding user:', error);
+            const errorMsg = `Error adding user: ${error}`
+            console.error(errorMsg);
+            toaster.create({
+                description: errorMsg,
+                type: "error",
+            })
         }
     };
 
@@ -50,8 +68,17 @@ function Users() {
         try {
             await axios.delete(`${apiUrl}/${id}`);
             getUsers();
+            toaster.create({
+                description: `Deleted user ${id}`,
+                type: "info",
+            })
         } catch (error) {
-            console.error('Error deleting user:', error);
+            const errorMsg = `Error deleting user: ${error}`
+            console.error(errorMsg);
+            toaster.create({
+                description: errorMsg,
+                type: "error",
+            })
         }
     };
 
@@ -97,7 +124,10 @@ function Users() {
                             if (selectedUser) {
                                 await deleteUser(selectedUser.value);
                             } else {
-                                alert('Please select a user to delete');
+                                toaster.create({
+                                    description: "Please select a user to delete",
+                                    type: "error",
+                                });
                             }
                             setIsLoading(false);
                         }}>
@@ -117,6 +147,7 @@ function Users() {
                 </Flex>
                 </HStack>
             </RadioCardRoot>
+            <Toaster />
         </Container>
     );
 }
