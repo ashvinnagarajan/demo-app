@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Heading, Text, Button, VStack, HStack, Link, Flex, Container } from '@chakra-ui/react';
+import PageActionBar from './components/PageActionBar'
 
 function LandingPage() {
     return (
@@ -83,6 +84,7 @@ function LandingPage() {
             <Box py={5} textAlign="center">
                 &copy; 2024 Flask User Management App. All rights reserved.
             </Box>
+            <PageActionBar pageTitle="Home"/>
         </Box>
     );
 }

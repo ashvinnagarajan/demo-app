@@ -7,7 +7,8 @@ import {
     RadioCardLabel,
     RadioCardRoot,
   } from "./components/ui/radio-card"
-  import { Toaster, toaster } from "./components/ui/toaster"
+import { Toaster, toaster } from "./components/ui/toaster"
+import PageActionBar from './components/PageActionBar'
 
 const apiUrl = 'https://zz2vxt1eck.execute-api.us-east-2.amazonaws.com/dev/users';
 
@@ -148,6 +149,7 @@ function Users() {
                 </HStack>
             </RadioCardRoot>
             <Toaster />
+            <PageActionBar pageTitle="Users"/>
         </Container>
     );
 }
