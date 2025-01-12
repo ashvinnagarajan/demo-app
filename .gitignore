@@ -6,6 +6,9 @@ __pycache__/
 *.pyd
 .Python
 
+# Secrets
+contants.py
+
 # Flask-specific files
 instance/
 .env
