@@ -97,11 +97,23 @@ function Users() {
                     placeholder="User Name"
                     value={userName}
                     onChange={(e) => setUserName(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          addUser();
+                        }
+                    }}
                 />
                 <Input 
                     placeholder="Say something interesting"
                     value={userEmail}
                     onChange={(e) => setUserEmail(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          addUser();
+                        }
+                    }}
                 />
                 <Button colorScheme="blue" onClick={addUser} width="full">
                     Add User

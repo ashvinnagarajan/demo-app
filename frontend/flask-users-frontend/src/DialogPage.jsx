@@ -54,6 +54,12 @@ const DialogPage = () => {
                     placeholder="Enter your query here..."
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter' && !e.shiftKey) {
+                          e.preventDefault();
+                          fetchStreamedResponse();
+                        }
+                    }}
                 />
                 <Button loading={isLoading} onClick={fetchStreamedResponse}>Send Query</Button>
             </VStack>
