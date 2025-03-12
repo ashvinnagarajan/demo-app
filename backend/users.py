@@ -1,4 +1,3 @@
-# users.py (Blueprint for user-related routes)
 from flask import Blueprint, jsonify, request
 import boto3
 

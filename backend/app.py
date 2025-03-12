@@ -1,4 +1,3 @@
-# app.py (Main Flask Application)
 from flask import Flask
 from flask_cors import CORS
 from dialog import dialog_bp

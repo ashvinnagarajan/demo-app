@@ -6,9 +6,6 @@ __pycache__/
 *.pyd
 .Python
 
-# Secrets
-contants.py
-
 # Flask-specific files
 instance/
 .env
@@ -29,3 +26,5 @@ build/
 *.log
 .zappa/
 .aws-sam/
+
+zappa_settings.json

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Heading, Text, Button, VStack, HStack, Link, Flex, Container } from '@chakra-ui/react';
+import { Box, Heading, Text, Button, Link, Flex, Container } from '@chakra-ui/react';
 import PageActionBar from './components/PageActionBar'
 
 function LandingPage() {
