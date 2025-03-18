@@ -1,5 +1,52 @@
 {
+  "name": "flask-users-frontend",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "axios": "^1.7.9"
+    "@aws-amplify/ui-react": "^6.9.3",
+    "@chakra-ui/react": "^3.2.5",
+    "@emotion/react": "^11.14.0",
+    "aws-amplify": "^6.13.5",
+    "axios": "^1.7.9",
+    "canvas-confetti": "^1.9.3",
+    "cra-template": "1.2.0",
+    "framer-motion": "^12.5.0",
+    "next-themes": "^0.4.4",
+    "openai": "^4.78.1",
+    "p5": "^1.11.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-helmet": "^6.1.0",
+    "react-icons": "^5.4.0",
+    "react-router-dom": "^7.1.1",
+    "react-scripts": "^5.0.1",
+    "web-vitals": "^4.2.4"
+  },
+  "scripts": {
+    "start": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
+    "build": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
+    "test": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@chakra-ui/cli": "^3.2.5"
   }
 }

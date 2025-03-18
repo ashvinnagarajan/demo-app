@@ -10,7 +10,7 @@ import {
 import { Toaster, toaster } from "./components/ui/toaster"
 import PageActionBar from './components/PageActionBar'
 
-const apiUrl = 'https://zz2vxt1eck.execute-api.us-east-2.amazonaws.com/dev/users';
+const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/users`;
 
 function Users() {
     const [users, setUsers] = useState([]);

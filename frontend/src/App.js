@@ -5,6 +5,7 @@ import DialogPage from './DialogPage';
 import LandingPage from './LandingPage';
 import ProductPage from './ProductPage';
 import Users from './Users';
+import { Register } from './product/Register';
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                     <Route path="/users" element={<Users />} />
                     <Route path="/product" element={<ProductPage />} />
                     <Route path="/dialog" element={<DialogPage />} />
+                    <Route path="/register" element={<Register />} />
                 </Routes>
             </Router>
         </Provider>
