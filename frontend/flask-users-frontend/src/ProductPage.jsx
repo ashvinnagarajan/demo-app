@@ -2,6 +2,7 @@ import { Container, Box } from "@chakra-ui/react";
 import { FaqSection } from "./product/FaqSection";
 import { Header } from "./product/Header"
 import { HeroSection } from "./product/HeroSection";
+import { Pricing } from "./product/Pricing";
 import { Helmet } from "react-helmet";
 import FlyingSpirit from "./utils/flyingSpirit";
 import PageActionBar from "./components/PageActionBar";
@@ -22,6 +23,8 @@ function ProductPage() {
             <HeroSection />
 
             <FaqSection />
+
+            <Pricing />
         </Container>
 
         <PageActionBar pageTitle="Product" />

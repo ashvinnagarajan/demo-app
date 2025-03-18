@@ -6,7 +6,7 @@ import {
   Image,
 } from "@chakra-ui/react";
 // import { Layout } from "./components/Layout";
-// import { PricingSection } from "./components/PricingSection";
+import { PricingSection } from "./components/PricingSection";
 
 function ProductPage() {
   return (
@@ -28,7 +28,7 @@ function ProductPage() {
       
       {/* Pricing Section */}
       <Container py={28} maxW="container.lg" id="pricing">
-        {/* <PricingSection /> */}
+        <PricingSection />
       </Container>
   </Container>
   );
