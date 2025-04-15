@@ -15,6 +15,7 @@ from email.mime.image import MIMEImage
 # List of recipient email addresses
 RECIPIENTS = [
     'ashvinagarajan@gmail.com',
+    'anerip@outlook.com',
 ]
 
 MESSAGES_FILE = 'messages.yaml'
@@ -140,8 +141,8 @@ def start_scheduler():
         print("Scheduler already running.")
         return
 
-    schedule.clear()  # Avoid duplicate jobs if restarted
-    schedule.every(2).minutes.do(job)
+    schedule.clear() 
+    schedule.every().day.at("09:00").do(job)
 
     stop_event.clear()  # Reset stop flag
     scheduler_thread = threading.Thread(target=scheduler_loop, daemon=True)
