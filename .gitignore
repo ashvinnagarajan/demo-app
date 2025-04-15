@@ -28,3 +28,8 @@ build/
 .aws-sam/
 
 zappa_settings.json
+
+# amplify
+.amplify
+amplify_outputs*
+amplifyconfiguration*
